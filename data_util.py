@@ -19,7 +19,7 @@ def load_data(args):
         args.testlength = 5
         args.vallength = 1
         args.trainlength = 10
-        args.length = 16
+        args.length = 16 # total sequence length
         args.split = 0
 
         if "evasive" in dataset:
