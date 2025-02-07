@@ -7,7 +7,7 @@ from torch import nn
 # import wandb
 from config import get_configs
 from data_util import *
-# from REDGSL import REDGSL, MergeLayer
+from REDGSL import REDGSL, MergeLayer
 from early_stopping import early_stopping
 from metrics import get_link_prediction_metrics, evaluate_link_prediction_linear
 
@@ -44,16 +44,6 @@ print("\nPreparing train/test data...")
 args, pos_edges, neg_edges, adj_matrices, node_embeddings = load_data(args)
 ## pos_edges[i].shape == neg_edges[i].shape
 
-print(pos_edges[0].shape)
-print(pos_edges[0])
-print("#"*50)
-print(adj_matrices[0].shape)
-print(adj_matrices[0])
-print("#"*50)
-print(node_embeddings.shape)
-print(node_embeddings[0])
-print("#"*50)
-
 timestamp = args.length
 val_start_t = args.trainlength
 val_end_t = args.trainlength + args.vallength
@@ -84,15 +74,6 @@ for t in range(timestamp):
         adj = adj_mul(adj, adj, args.num_nodes)
         t_adjs.append(adj)
     all_adjs.append(t_adjs)
-
-print(len(node_features))
-print(node_features[0].shape)
-print(node_features[0][0])
-print("#"*50)
-print(len(all_adjs))
-print(all_adjs[0][0].shape)
-import sys
-sys.exit(0)
 
 # Init Model
 dynamic_backbone = REDGSL(n_feats=args.nfeat, hidden_channels=args.hidden_channels,
