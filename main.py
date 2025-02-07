@@ -10,6 +10,7 @@ from data_util import *
 from REDGSL import REDGSL, MergeLayer
 from early_stopping import early_stopping
 from metrics import get_link_prediction_metrics, evaluate_link_prediction_linear
+import sys
 
 
 def fix_seed(seed):
